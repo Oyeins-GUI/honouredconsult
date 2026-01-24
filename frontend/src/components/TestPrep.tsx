@@ -71,12 +71,6 @@ export function TestPrep({ onBookTest }: TestPrepProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
-            Test Preparation Programs
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Expert coaching with proven strategies to help you achieve your target scores
-          </p>
         </motion.div>
         
         <Tabs defaultValue="toefl" className="w-full">

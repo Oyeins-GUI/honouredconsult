@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { Link } from "react-router-dom"
 import { Phone, EnvelopeSimple, FacebookLogo, InstagramLogo, TiktokLogo, TwitterLogo } from "@phosphor-icons/react"
 
 interface FooterProps {
@@ -124,9 +125,9 @@ export function Footer({ onBookConsultation }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/70">
           <p>© 2024 Honoured Consult. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary-foreground transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary-foreground transition-colors">Cookie Policy</a>
+            <Link to="/privacy" className="hover:text-primary-foreground transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-primary-foreground transition-colors">Terms of Service</Link>
+            <Link to="/cookies" className="hover:text-primary-foreground transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>
