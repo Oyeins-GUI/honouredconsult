@@ -57,7 +57,7 @@ export function Hero({ onBookConsultation }: HeroProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Your trusted partner in international education. Expert counseling, seamless applications,
-            visa support, and test preparation. We handle everything so you can focus on your dreams.
+            visa support, and preparations. We handle everything so you can focus on your dreams.
           </motion.p>
 
           <motion.div

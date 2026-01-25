@@ -1,25 +1,29 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ChatCircle, GraduationCap, FileText, AirplaneTilt, ArrowRight } from "@phosphor-icons/react"
+import { ChatCircle, GraduationCap, FileText, AirplaneTilt } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
-import { toast } from "sonner"
 
 const services = [
   {
-    icon: AirplaneTilt,
+    icon: ChatCircle,
+    title: "Free Consultation",
+    description: "Personalized guidance from experienced counselors to help you explore study abroad options and create a tailored roadmap for your academic journey",
+    features: ["Course Selection", "University Matching", "Budget Planning", "Career Guidance"]
+  },
+  {
+    icon: FileText,
     title: "Visa Guidance",
     description: "Step-by-step support for visa applications with industry-leading 98% success rates and comprehensive interview preparation",
-    features: ["Document Prep", "Mock Interviews", "Embassy Support"]
+    features: ["Document Preparation", "Mock Interviews", "Embassy Support", "Application Review"]
+  },
+  {
+    icon: AirplaneTilt,
+    title: "Pre-Departure Support",
+    description: "Essential assistance to ensure a smooth transition to your new country, including travel arrangements and cultural orientation",
+    features: ["Travel Booking", "Accommodation Help", "Cultural Orientation", "Packing Guidance"]
   }
 ]
 
 export function Services() {
-  const handleLearnMore = (service: string) => {
-    toast.info(`${service} Details`, {
-      description: "For comprehensive information about this service, please book a free consultation with our experts."
-    })
-  }
-
   return (
     <section className="py-16 md:py-24 bg-gray-200 relative overflow-hidden">
       <div className="absolute inset-0 opacity-20" style={{
@@ -76,15 +80,6 @@ export function Services() {
                         ))}
                       </ul>
                     </div>
-                    
-                    <Button 
-                      variant="ghost" 
-                      className="w-full justify-between group/btn hover:bg-primary/5 mt-4"
-                      onClick={() => handleLearnMore(service.title)}
-                    >
-                      Learn More
-                      <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
