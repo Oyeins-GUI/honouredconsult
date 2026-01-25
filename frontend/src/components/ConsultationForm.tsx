@@ -277,12 +277,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                             <SelectValue placeholder="Select service" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="career">Career Counseling</SelectItem>
-                            <SelectItem value="university">University Selection</SelectItem>
-                            <SelectItem value="application">Application Support</SelectItem>
-                            <SelectItem value="visa">Visa Guidance</SelectItem>
-                            <SelectItem value="test">Test Preparation</SelectItem>
                             <SelectItem value="general">General Consultation</SelectItem>
+                            <SelectItem value="visa">Visa Guidance</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

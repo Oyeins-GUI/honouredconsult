@@ -41,7 +41,7 @@ export function Hero({ onBookConsultation }: HeroProps) {
           </motion.div>
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -104,7 +104,7 @@ export function Hero({ onBookConsultation }: HeroProps) {
           </motion.div>
         </div>
 
-        <div className="flex justify-center lg:justify-end -mt-72">
+        <div className="flex justify-center lg:justify-end -mt-52">
           <motion.div
             className=""
             initial={{ opacity: 0, scale: 0.9 }}

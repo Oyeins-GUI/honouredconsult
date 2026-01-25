@@ -6,24 +6,6 @@ import { toast } from "sonner"
 
 const services = [
   {
-    icon: ChatCircle,
-    title: "Career Counseling",
-    description: "Personalized guidance to identify the right course and country based on your career goals, interests, and academic background",
-    features: ["1-on-1 Sessions", "Psychometric Tests", "Career Roadmap"]
-  },
-  {
-    icon: GraduationCap,
-    title: "University Selection",
-    description: "Expert help in shortlisting universities that perfectly match your profile, budget, preferences, and career aspirations",
-    features: ["Profile Assessment", "University Matching", "Scholarship Search"]
-  },
-  {
-    icon: FileText,
-    title: "Application Support",
-    description: "Complete assistance with applications, compelling essays, strong LORs, and meticulous documentation to maximize your chances",
-    features: ["Essay Writing", "Document Review", "Application Tracking"]
-  },
-  {
     icon: AirplaneTilt,
     title: "Visa Guidance",
     description: "Step-by-step support for visa applications with industry-leading 98% success rates and comprehensive interview preparation",
@@ -88,7 +70,7 @@ export function Services() {
                       <ul className="space-y-2">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                             {feature}
                           </li>
                         ))}
