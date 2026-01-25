@@ -126,7 +126,7 @@ export function Hero({ onBookConsultation }: HeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <QuickSearch />
+        <QuickSearch onBookConsultation={onBookConsultation} />
       </motion.div>
     </section>
   )

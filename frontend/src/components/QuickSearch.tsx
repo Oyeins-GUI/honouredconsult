@@ -7,7 +7,11 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { searchesAPI } from "@/lib/api"
 
-export function QuickSearch() {
+interface QuickSearchProps {
+  onBookConsultation?: () => void
+}
+
+export function QuickSearch({ onBookConsultation }: QuickSearchProps) {
   const [searchData, setSearchData] = useState({
     level: "",
     destination: "",
@@ -27,10 +31,15 @@ export function QuickSearch() {
       await searchesAPI.create(query, searchData)
 
       toast.success("Search Saved!", {
-        description: "We'll help you find the perfect program. Book a consultation for personalized recommendations."
+        description: "Opening consultation form for personalized recommendations."
       })
 
       console.log("Search:", searchData)
+
+      // Trigger the Book Consultation flow immediately after successful search
+      if (onBookConsultation) {
+        onBookConsultation()
+      }
     } catch (error) {
       console.error("Failed to save search:", error)
       toast.error("Failed to save search", {
