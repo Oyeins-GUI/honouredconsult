@@ -30,11 +30,11 @@ export function QuickSearch({ onBookConsultation }: QuickSearchProps) {
       const query = `${searchData.level} ${searchData.destination} ${searchData.field}`.trim()
       await searchesAPI.create(query, searchData)
 
+      console.log("Search:", searchData)
+
       toast.success("Search Saved!", {
         description: "Opening consultation form for personalized recommendations."
       })
-
-      console.log("Search:", searchData)
 
       // Trigger the Book Consultation flow immediately after successful search
       if (onBookConsultation) {
