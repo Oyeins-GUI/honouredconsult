@@ -1,14 +1,25 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "start:prod": "NODE_ENV=production node dist/server.js",
+    "watch": "tsc --watch",
+    "lint": "eslint src --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "honoured-consult",
+    "education",
+    "consultation",
+    "api"
+  ],
+  "author": "Honoured Consult",
   "license": "ISC",
-  "description": "",
+  "description": "Backend API for Honoured Consult - Study Abroad Consultation Platform",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",

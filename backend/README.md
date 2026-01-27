@@ -1,52 +1,65 @@
-# Honoured Consult - Backend API
+# Honoured Consult Backend API
 
-Backend API server for the Honoured Consult study abroad consulting platform.
+Production-ready backend API for the Honoured Consult study abroad consultation platform.
 
 ## Features
 
-- RESTful API endpoints
-- JWT-based authentication
-- Email/password admin login
-- Consultation management
-- Notification system
-- Search analytics
-- Ready for MongoDB integration
+- ✅ User Authentication (JWT-based)
+- ✅ Admin Dashboard
+- ✅ Consultation Management
+- ✅ Course & University Management
+- ✅ Application Tracking
+- ✅ Search Analytics
+- ✅ Blog Management
+- ✅ Notification System
+- ✅ TypeScript Support
+- ✅ MongoDB Integration
+- ✅ RESTful API Design
 
 ## Tech Stack
 
-- Node.js
-- Express.js
-- JWT for authentication
-- In-memory storage (temporary, will migrate to MongoDB)
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Language:** TypeScript
+- **Database:** MongoDB with Mongoose
+- **Authentication:** JWT (JSON Web Tokens)
+- **Password Hashing:** bcryptjs
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js (v18 or higher)
+- MongoDB (local or Atlas)
 - npm or yarn
 
 ### Installation
 
-1. Navigate to the backend directory:
-
+1. Install dependencies:
 ```bash
 cd backend
-```
-
-2. Install dependencies:
-
-```bash
 npm install
 ```
 
-3. Configure environment variables:
-
+2. Set up environment variables:
 ```bash
 cp .env.example .env
+# Edit .env with your configuration
 ```
 
-Edit `.env` and update the following:
+3. Start development server:
+```bash
+npm run dev
+```
+
+The server will start on `http://localhost:5000`
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
 
 - `ADMIN_EMAIL`: Admin email (default: info@honouredconsult.com)
 - `ADMIN_PASSWORD`: Admin password
