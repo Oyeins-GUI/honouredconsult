@@ -73,10 +73,6 @@ export function Home() {
 
   return (
     <div className="min-h-screen">
-      <Navbar 
-        onBookConsultation={handleBookConsultation}
-      />
-
       <main>
         <Hero onBookConsultation={() => handleBookConsultation()} />
 
@@ -98,8 +94,6 @@ export function Home() {
           <Testimonials />
         </div>
       </main>
-
-      <Footer onBookConsultation={() => handleBookConsultation()} />
 
       <ConsultationForm
         open={consultationOpen}

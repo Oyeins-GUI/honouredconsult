@@ -60,25 +60,104 @@ export default function Newsletters() {
   }
 
   return (
-    <div className="min-h-screen bg-blue-50 dark:bg-blue-950">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative py-2 px-6">
+        <div className="absolute inset-0 bg-gray-100" />
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
               <Newspaper size={40} weight="duotone" className="text-primary" />
             </div>
-            <h1 className="text-5xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+            <h1 className="text-3xl font-bold mb-4 text-foreground">
               Latest News & Updates
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Stay informed with the latest updates, tips, and insights about studying abroad
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Newsletters List */}
+      <section className="px-6 pb-20">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold m-8 text-center">Recent Newsletters</h2>
+          
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading newsletters...</p>
+            </div>
+          ) : newsletters.length === 0 ? (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <Newspaper size={64} weight="duotone" className="mx-auto mb-4 text-muted-foreground" />
+                <p className="text-muted-foreground text-lg">No newsletters published yet</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Subscribe to be the first to know when we publish new content!
+                </p>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="space-y-6">
+              {newsletters.map((newsletter: any, index: number) => (
+                <motion.div
+                  key={newsletter._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    <div className="h-2 bg-gray-300" />
+                    <CardHeader>
+                      <div className="flex items-start justify-between mb-2">
+                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                          Newsletter
+                        </Badge>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Calendar size={16} />
+                          {new Date(newsletter.publishedAt || newsletter.createdAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                          })}
+                        </div>
+                      </div>
+                      <CardTitle className="text-2xl mb-2">{newsletter.title}</CardTitle>
+                      <CardDescription className="text-base">{newsletter.excerpt}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      {expandedNewsletter === newsletter._id ? (
+                        <div>
+                          <div 
+                            className="prose prose-sm max-w-none mb-4"
+                            dangerouslySetInnerHTML={{ __html: newsletter.content }}
+                          />
+                          <Button 
+                            variant="outline" 
+                            onClick={() => setExpandedNewsletter(null)}
+                          >
+                            Show Less
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button 
+                          onClick={() => setExpandedNewsletter(newsletter._id)}
+                          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          Read Full Newsletter
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -90,7 +169,7 @@ export default function Newsletters() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="bg-blue-100 dark:bg-blue-900 border-2 border-blue-200">
+            <Card className="bg-gray-200 border-2 border-gray-300">
               <CardHeader className="text-center pb-4">
                 <CardTitle className="text-2xl flex items-center justify-center gap-2">
                   <Envelope size={24} weight="duotone" className="text-primary" />
@@ -135,7 +214,7 @@ export default function Newsletters() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full h-12"
+                    className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white"
                     disabled={subscribing}
                   >
                     {subscribing ? 'Subscribing...' : 'Subscribe Now'}
@@ -147,105 +226,6 @@ export default function Newsletters() {
               </CardContent>
             </Card>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Newsletters List */}
-      <section className="px-6 pb-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Recent Newsletters</h2>
-          
-          {loading ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Loading newsletters...</p>
-            </div>
-          ) : newsletters.length === 0 ? (
-            <Card>
-              <CardContent className="py-12 text-center">
-                <Newspaper size={64} weight="duotone" className="mx-auto mb-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-lg">No newsletters published yet</p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Subscribe to be the first to know when we publish new content!
-                </p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="space-y-6">
-              {newsletters.map((newsletter: any, index: number) => (
-                <motion.div
-                  key={newsletter._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden">
-                    <div className="h-2 bg-blue-600" />
-                    <CardHeader>
-                      <div className="flex items-start justify-between mb-2">
-                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
-                          Newsletter
-                        </Badge>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Calendar size={16} />
-                          {new Date(newsletter.publishedAt || newsletter.createdAt).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                          })}
-                        </div>
-                      </div>
-                      <CardTitle className="text-2xl mb-2">{newsletter.title}</CardTitle>
-                      <CardDescription className="text-base">{newsletter.excerpt}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      {expandedNewsletter === newsletter._id ? (
-                        <div>
-                          <div 
-                            className="prose prose-sm max-w-none mb-4"
-                            dangerouslySetInnerHTML={{ __html: newsletter.content }}
-                          />
-                          <Button 
-                            variant="outline" 
-                            onClick={() => setExpandedNewsletter(null)}
-                          >
-                            Show Less
-                          </Button>
-                        </div>
-                      ) : (
-                        <Button 
-                          onClick={() => setExpandedNewsletter(newsletter._id)}
-                          className="w-full md:w-auto"
-                        >
-                          Read Full Newsletter
-                        </Button>
-                      )}
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="px-6 pb-20">
-        <div className="max-w-4xl mx-auto">
-          <Card className="bg-blue-600 text-white border-0">
-            <CardContent className="py-12 text-center">
-              <h3 className="text-3xl font-bold mb-4">Never Miss an Update</h3>
-              <p className="text-lg mb-6 opacity-90">
-                Join thousands of students who trust us for their study abroad journey
-              </p>
-              <Button 
-                size="lg" 
-                variant="secondary"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              >
-                Subscribe Now
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </section>
     </div>
