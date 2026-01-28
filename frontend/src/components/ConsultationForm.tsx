@@ -31,10 +31,9 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
     message: ""
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
+  const handleSubmit = async () => {
     if (step !== 2) {
+      console.log("Form submitted from step", step, " - ignoring")
       return
     }
 
@@ -59,21 +58,7 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
       })
 
       setStep(3)
-      setTimeout(() => {
-        onOpenChange(false)
-        setStep(1)
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          country: "",
-          destination: "",
-          service: initialContext || "",
-          message: ""
-        })
-        setIsSubmitting(false)
-      }, 3000)
+      setIsSubmitting(false)
     } catch (error) {
       console.error("Failed to book consultation:", error)
       toast.error("Failed to book consultation", {
@@ -83,7 +68,12 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
     }
   }
 
-  const nextStep = () => {
+  const nextStep = (e?: React.MouseEvent | React.FormEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    
     if (step === 1 && (!formData.firstName || !formData.lastName || !formData.email || !formData.phone)) {
       toast.error("Please fill in all required fields")
       return
@@ -115,11 +105,32 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
               </motion.div>
               <DialogTitle className="text-3xl mb-3">Consultation Booked!</DialogTitle>
               <DialogDescription className="text-base leading-relaxed">
-                Thank you for choosing Honoured Consult. Our expert counselor will contact you
+                Thank you for choosing Honoured Educational Consult. Our expert counselor will contact you
                 within 24 hours to confirm your appointment and discuss your study abroad goals.
               </DialogDescription>
               <div className="mt-6 text-sm text-muted-foreground">
                 Check your email for confirmation details.
+              </div>
+              <div className="mt-8">
+                <Button
+                  onClick={() => {
+                    onOpenChange(false)
+                    setStep(1)
+                    setFormData({
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      phone: "",
+                      country: "",
+                      destination: "",
+                      service: initialContext || "",
+                      message: ""
+                    })
+                  }}
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-12 px-8"
+                >
+                  Close
+                </Button>
               </div>
             </motion.div>
           ) : (
@@ -139,7 +150,7 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                 <Progress value={progress} className="mt-4 h-2 bg-white/20" />
               </div>
 
-              <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              <form className="p-6 space-y-6">
                 <AnimatePresence mode="wait">
                   {step === 1 && (
                     <motion.div
@@ -159,7 +170,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
                                 e.preventDefault()
-                                nextStep()
+                                e.stopPropagation()
+                                nextStep(e)
                               }
                             }}
                             required
@@ -176,7 +188,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
                                 e.preventDefault()
-                                nextStep()
+                                e.stopPropagation()
+                                nextStep(e)
                               }
                             }}
                             required
@@ -196,7 +209,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               e.preventDefault()
-                              nextStep()
+                              e.stopPropagation()
+                              nextStep(e)
                             }
                           }}
                           required
@@ -215,7 +229,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               e.preventDefault()
-                              nextStep()
+                              e.stopPropagation()
+                              nextStep(e)
                             }
                           }}
                           required
@@ -233,7 +248,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               e.preventDefault()
-                              nextStep()
+                              e.stopPropagation()
+                              nextStep(e)
                             }
                           }}
                           placeholder="e.g., Nigeria"
@@ -321,7 +337,8 @@ export function ConsultationForm({ open, onOpenChange, initialContext }: Consult
                     </Button>
                   ) : (
                     <Button
-                      type="submit"
+                      type="button"
+                      onClick={() => handleSubmit()}
                       disabled={isSubmitting}
                       className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-12 disabled:opacity-50"
                     >

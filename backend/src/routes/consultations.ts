@@ -1,6 +1,7 @@
 import express, { Response } from 'express';
 import { authenticateToken, isAdmin, AuthRequest } from '../middleware/auth';
 import Consultation from '../models/Consultation';
+import { sendConsultationConfirmation, sendAdminNotification } from '../services/emailService';
 
 const router = express.Router();
 
@@ -31,6 +32,16 @@ router.post('/', async (req, res): Promise<void> => {
     });
 
     await consultation.save();
+
+    // Send confirmation email to user (in background)
+    sendConsultationConfirmation(email, firstName, lastName).catch(err => {
+      console.error('Failed to send confirmation email:', err);
+    });
+
+    // Send notification email to admin (in background)
+    sendAdminNotification(email, firstName, lastName).catch(err => {
+      console.error('Failed to send admin notification email:', err);
+    });
 
     res.status(201).json({
       success: true,

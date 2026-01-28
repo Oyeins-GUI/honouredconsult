@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard Information</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      .container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+      }
+      .section h2 {
+        color: #3498db;
+        margin-top: 0;
+      }
+      .method {
+        background-color: #ffffff;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border-left: 4px solid #3498db;
+      }
+      .method h3 {
+        color: #2c3e50;
+        margin-top: 0;
+      }
+      .keyboard-shortcut {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-weight: bold;
+        margin: 0 4px;
+      }
+      .btn {
+        display: inline-block;
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .btn:hover {
+        background-color: #2980b9;
+      }
+      .important {
+        background-color: #fff3cd;
+        border-color: #ffeaa7;
+        color: #856404;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .steps {
+        list-style-type: decimal;
+        padding-left: 20px;
+      }
+      .steps li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Admin Dashboard Access Information</h1>
+
+      <div class="success">
+        <strong>✅ Email Functionality Installed!</strong><br />
+        Users will now receive confirmation emails when they submit a
+        consultation request.
+      </div>
+
+      <div class="section">
+        <h2>How to Open the Admin Dashboard</h2>
+
+        <div class="method">
+          <h3>Method 1: Keyboard Shortcut (Recommended)</h3>
+          <p>
+            Press <span class="keyboard-shortcut">Ctrl</span> +
+            <span class="keyboard-shortcut">Shift</span> +
+            <span class="keyboard-shortcut">A</span> on your keyboard from
+            anywhere on the website.
+          </p>
+        </div>
+
+        <div class="method">
+          <h3>Method 2: Floating Admin Button</h3>
+          <p>
+            When logged in as an admin, a floating "A" button will appear at the
+            bottom right corner of the screen. Click this button to open the
+            admin dashboard.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>How to Log in as Admin</h2>
+        <div class="important">
+          <strong>Important:</strong> You need to log in first before you can
+          access the admin dashboard.
+        </div>
+        <ol class="steps">
+          <li>Open your browser and navigate to the login page</li>
+          <li>
+            Use these credentials:
+            <ul>
+              <li><strong>Email:</strong> info@honouredconsult.com</li>
+              <li>
+                <strong>Password:</strong> honouredconsult$10,000,000@100%
+              </li>
+            </ul>
+          </li>
+          <li>
+            After successful login, you will be able to access the admin
+            dashboard
+          </li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h2>Admin Dashboard Features</h2>
+        <p>The admin dashboard includes the following features:</p>
+        <ul>
+          <li>
+            <strong>Consultations Tab:</strong> View all submitted consultations
+            with status (pending/reviewed)
+          </li>
+          <li><strong>Searches Tab:</strong> Track user search history</li>
+          <li><strong>Notifications Tab:</strong> View notification history</li>
+          <li><strong>Settings Tab:</strong> Manage notification settings</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Email Functionality</h2>
+        <p>We've installed and configured email functionality. Now:</p>
+        <ul>
+          <li>
+            <strong>Users receive confirmation emails:</strong> When a
+            consultation is submitted, users get a confirmation email
+          </li>
+          <li>
+            <strong>Admin notifications:</strong> Admin receives email
+            notifications about new consultation requests
+          </li>
+          <li>
+            <strong>Professional templates:</strong> Emails are sent with
+            beautifully designed HTML templates
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Testing the Application</h2>
+        <p>To verify everything is working:</p>
+        <ol class="steps">
+          <li>
+            Open the frontend application at
+            <a href="http://localhost:5173">http://localhost:5173</a>
+          </li>
+          <li>Submit a consultation form with your email</li>
+          <li>
+            Check your email for a confirmation message (might be in spam
+            folder)
+          </li>
+          <li>
+            Log in as admin and verify the consultation appears in the dashboard
+          </li>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>

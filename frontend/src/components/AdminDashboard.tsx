@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -15,7 +15,8 @@ import {
   X,
   CheckCircle,
   Clock,
-  Bell
+  Bell,
+  SignIn
 } from "@phosphor-icons/react"
 import { motion } from "framer-motion"
 import { NotificationSettings } from "@/components/NotificationSettings"
@@ -52,7 +53,7 @@ export function AdminDashboard({ open, onClose }: AdminDashboardProps) {
       }
     }
     checkOwner()
-  }, [])
+  }, [open]) // Re-check when dashboard opens
 
   useEffect(() => {
     if (open && isOwner) {
@@ -80,7 +81,52 @@ export function AdminDashboard({ open, onClose }: AdminDashboardProps) {
     }
   }
 
-  if (!open || !isOwner) return null
+  if (!open) return null
+
+  if (!isOwner) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center"
+      >
+        <div className="max-w-md w-full mx-4">
+          <Card className="p-6">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold">Admin Access Required</CardTitle>
+              <CardDescription>
+                Please login with your admin credentials to access the dashboard
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-center p-4 bg-primary/10 rounded-lg">
+                <User size={64} weight="duotone" className="text-primary" />
+              </div>
+              <p className="text-center text-muted-foreground">
+                You need to be logged in as an administrator to view this dashboard.
+              </p>
+            </CardContent>
+            <CardFooter className="flex justify-center">
+              <Button 
+                size="lg"
+                onClick={() => {
+                  onClose()
+                  // Open login dialog from parent component
+                  const event = new CustomEvent('open-login-dialog')
+                  window.dispatchEvent(event)
+                }}
+                className="w-full"
+              >
+                <SignIn size={20} className="mr-2" />
+                Login to Admin Dashboard
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </motion.div>
+    )
+  }
 
   const sortedConsultations = [...(consultations || [])].sort((a, b) =>
     new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()

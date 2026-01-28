@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useState, useEffect } from "react"
-import { List, X, Phone } from "@phosphor-icons/react"
+import { List, X, Phone, User } from "@phosphor-icons/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 

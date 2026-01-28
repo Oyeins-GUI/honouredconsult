@@ -12,12 +12,14 @@ import { CTABanner } from "@/components/CTABanner"
 import { Footer } from "@/components/Footer"
 import { ConsultationForm } from "@/components/ConsultationForm"
 import { AdminDashboard } from "@/components/AdminDashboard"
+import { LoginDialog } from "@/components/LoginDialog"
 
 export function Home() {
   const [consultationOpen, setConsultationOpen] = useState(false)
   const [consultationContext, setConsultationContext] = useState("")
   const [adminOpen, setAdminOpen] = useState(false)
   const [isOwner, setIsOwner] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
 
   useEffect(() => {
     const checkOwner = async () => {
@@ -45,8 +47,16 @@ export function Home() {
       }
     }
 
+    const handleOpenLoginDialog = () => {
+      setLoginOpen(true)
+    }
+
     window.addEventListener("keydown", handleKeyPress)
-    return () => window.removeEventListener("keydown", handleKeyPress)
+    window.addEventListener("open-login-dialog", handleOpenLoginDialog)
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress)
+      window.removeEventListener("open-login-dialog", handleOpenLoginDialog)
+    }
   }, [])
 
   const handleBookConsultation = (context?: string) => {
@@ -63,7 +73,9 @@ export function Home() {
 
   return (
     <div className="min-h-screen">
-      <Navbar onBookConsultation={handleBookConsultation} />
+      <Navbar 
+        onBookConsultation={handleBookConsultation}
+      />
 
       <main>
         <Hero onBookConsultation={() => handleBookConsultation()} />
@@ -98,6 +110,22 @@ export function Home() {
       <AdminDashboard
         open={adminOpen}
         onClose={() => setAdminOpen(false)}
+      />
+
+      <LoginDialog
+        open={loginOpen}
+        onOpenChange={setLoginOpen}
+        onLoginSuccess={() => {
+          // Refresh isOwner state after successful login
+          const token = localStorage.getItem('auth_token');
+          const user = localStorage.getItem('user');
+          if (token && user) {
+            const userData = JSON.parse(user);
+            setIsOwner(userData.isAdmin || userData.isOwner || false);
+            // Open admin dashboard immediately after login
+            setAdminOpen(true);
+          }
+        }}
       />
 
       {isOwner && (
