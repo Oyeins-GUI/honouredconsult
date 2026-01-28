@@ -94,7 +94,7 @@ export function Navbar({ onBookConsultation }: NavbarProps) {
                 onClick={() => scrollToSection("success-stories")}
                 className="font-medium transition-colors text-foreground/80 hover:text-accent"
               >
-                Success Stories
+                Success
               </button>
 
               <div className="flex items-center gap-3 ml-2">

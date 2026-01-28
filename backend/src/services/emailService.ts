@@ -4,16 +4,16 @@ import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false, // true for 465, false for other ports
+  secure: false, 
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
   },
   tls: {
-    rejectUnauthorized: false // Allow self-signed certificates in development
+    rejectUnauthorized: false 
   },
-  debug: process.env.NODE_ENV === 'development', // Enable debug output in development
-  logger: true // Log to console
+  debug: process.env.NODE_ENV === 'development', 
+  logger: true 
 });
 
 // Send consultation confirmation email to user
