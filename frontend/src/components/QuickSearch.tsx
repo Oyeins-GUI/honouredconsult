@@ -89,28 +89,28 @@ export function QuickSearch({ onBookConsultation }: QuickSearchProps) {
                   <SelectValue placeholder="Destination" />
                </SelectTrigger>
                <SelectContent>
-                  <SelectItem value="australia">Australia</SelectItem>
-                  <SelectItem value="canada">Canada</SelectItem>
-                  <SelectItem value="uae">United Arab Emirates</SelectItem>
-                  <SelectItem value="germany">Germany</SelectItem>
-                  <SelectItem value="ireland">Ireland</SelectItem>
-                  <SelectItem value="newzealand">New Zealand</SelectItem>
-                  <SelectItem value="singapore">Singapore</SelectItem>
-                  <SelectItem value="switzerland">Switzerland</SelectItem>
-                  <SelectItem value="uk">United Kingdom</SelectItem>
-                  <SelectItem value="italy">Italy</SelectItem>
-                  <SelectItem value="france">France</SelectItem>
-                  <SelectItem value="netherlands">Netherlands</SelectItem>
-                  <SelectItem value="sweden">Sweden</SelectItem>
-                  <SelectItem value="spain">Spain</SelectItem>
-                  <SelectItem value="austria">Austria</SelectItem>
-                  <SelectItem value="denmark">Denmark</SelectItem>
-                  <SelectItem value="finland">Finland</SelectItem>
-                  <SelectItem value="hungary">Hungary</SelectItem>
-                  <SelectItem value="cyprus">Cyprus</SelectItem>
-                  <SelectItem value="poland">Poland</SelectItem>
-                  <SelectItem value="malaysia">Malaysia</SelectItem>
-                  <SelectItem value="malta">Malta</SelectItem>
+                  <SelectItem value="australia">🇦🇺 Australia</SelectItem>
+                  <SelectItem value="canada">🇨🇦 Canada</SelectItem>
+                  <SelectItem value="uae">🇦🇪 United Arab Emirates</SelectItem>
+                  <SelectItem value="germany">🇩🇪 Germany</SelectItem>
+                  <SelectItem value="ireland">🇮🇪 Ireland</SelectItem>
+                  <SelectItem value="newzealand">🇳🇿 New Zealand</SelectItem>
+                  <SelectItem value="singapore">🇸🇬 Singapore</SelectItem>
+                  <SelectItem value="switzerland">🇨🇭 Switzerland</SelectItem>
+                  <SelectItem value="uk">🇬🇧 United Kingdom</SelectItem>
+                  <SelectItem value="italy">🇮🇹 Italy</SelectItem>
+                  <SelectItem value="france">🇫🇷 France</SelectItem>
+                  <SelectItem value="netherlands">🇳🇱 Netherlands</SelectItem>
+                  <SelectItem value="sweden">🇸🇪 Sweden</SelectItem>
+                  <SelectItem value="spain">🇪🇸 Spain</SelectItem>
+                  <SelectItem value="austria">🇦🇹 Austria</SelectItem>
+                  <SelectItem value="denmark">🇩🇰 Denmark</SelectItem>
+                  <SelectItem value="finland">🇫🇮 Finland</SelectItem>
+                  <SelectItem value="hungary">🇭🇺 Hungary</SelectItem>
+                  <SelectItem value="cyprus">🇨🇾 Cyprus</SelectItem>
+                  <SelectItem value="poland">🇵🇱 Poland</SelectItem>
+                  <SelectItem value="malaysia">🇲🇾 Malaysia</SelectItem>
+                  <SelectItem value="malta">🇲🇹 Malta</SelectItem>
                </SelectContent>
             </Select>
 
