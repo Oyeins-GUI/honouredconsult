@@ -14,13 +14,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
-   Select,
-   SelectContent,
-   SelectItem,
-   SelectTrigger,
-   SelectValue,
-} from "@/components/ui/select";
-import {
    Dialog,
    DialogContent,
    DialogDescription,
@@ -48,9 +41,7 @@ import {
    Plus,
    Newspaper,
    UserList,
-   ChartLineUp,
    Trash,
-   Eye,
    PencilSimple,
 } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
@@ -58,6 +49,7 @@ import { NotificationSettings } from "@/components/NotificationSettings";
 import { NotificationHistory } from "@/components/NotificationHistory";
 import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
+import { LoginDialog } from "./LoginDialog";
 
 export function AdminDashboard() {
    const [consultations, setConsultations] = useState<any[]>([]);
@@ -82,6 +74,8 @@ export function AdminDashboard() {
       type: "success" | "error";
       message: string;
    } | null>(null);
+   const [adminOpen, setAdminOpen] = useState(false);
+   const [loginOpen, setLoginOpen] = useState(false);
 
    useEffect(() => {
       const checkOwner = async () => {
@@ -100,6 +94,24 @@ export function AdminDashboard() {
          }
       };
       checkOwner();
+
+      const handleKeyPress = (e: KeyboardEvent) => {
+         if (e.ctrlKey && e.shiftKey && e.key === "A") {
+            e.preventDefault();
+            setAdminOpen(true);
+         }
+      };
+
+      const handleOpenLoginDialog = () => {
+         setLoginOpen(true);
+      };
+
+      window.addEventListener("keydown", handleKeyPress);
+      window.addEventListener("open-login-dialog", handleOpenLoginDialog);
+      return () => {
+         window.removeEventListener("keydown", handleKeyPress);
+         window.removeEventListener("open-login-dialog", handleOpenLoginDialog);
+      };
    }, []);
 
    useEffect(() => {
@@ -299,9 +311,8 @@ export function AdminDashboard() {
                      <Button
                         size="lg"
                         onClick={() => {
-                           // () => ();
                            const event = new CustomEvent("open-login-dialog");
-                           window.dispatchEvent(event);
+                           const dispatch = window.dispatchEvent(event);
                         }}
                         className="w-full"
                      >
@@ -310,6 +321,24 @@ export function AdminDashboard() {
                      </Button>
                   </CardFooter>
                </Card>
+
+               <LoginDialog
+                  open={loginOpen}
+                  onOpenChange={setLoginOpen}
+                  onLoginSuccess={() => {
+                     // Refresh isOwner state after successful login
+                     const token = localStorage.getItem("auth_token");
+                     const user = localStorage.getItem("user");
+                     if (token && user) {
+                        const userData = JSON.parse(user);
+                        setIsOwner(
+                           userData.isAdmin || userData.isOwner || false,
+                        );
+                        // Open admin dashboard immediately after login
+                        setAdminOpen(true);
+                     }
+                  }}
+               />
             </div>
          </motion.div>
       );
