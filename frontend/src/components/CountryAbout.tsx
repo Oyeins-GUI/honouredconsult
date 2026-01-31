@@ -712,7 +712,7 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section with Image */}
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <div 
@@ -721,18 +721,18 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
-        <div className="relative h-full flex items-center justify-center text-center px-6">
+        <div className="relative h-full flex items-center justify-center text-center px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl"
+            className="max-w-4xl w-full"
           >
-            <div className="text-8xl md:text-9xl mb-6 drop-shadow-2xl text-primary font-bold">{country.flag}</div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+            <div className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-4 md:mb-6 drop-shadow-2xl text-primary font-bold">{country.flag}</div>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 drop-shadow-lg px-2 break-words">
               Study in {country.name}
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-medium drop-shadow-lg">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium drop-shadow-lg px-2 break-words">
               {country.tagline}
             </p>
           </motion.div>
@@ -740,7 +740,7 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -750,11 +750,11 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           className="mb-12"
         >
           <Card className="border-border/50 shadow-lg bg-white">
-            <CardContent className="p-8 md:p-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+            <CardContent className="p-6 md:p-8 lg:p-12">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-foreground break-words">
                 {country.description}
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed break-words">
                 {country.fullDescription}
               </p>
             </CardContent>
@@ -767,10 +767,11 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-12 bg-gray-200 -mx-6 md:-mx-8 px-6 md:px-8 py-12 md:py-16"
+          className="mb-12"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">Quick Facts</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="bg-gray-200 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-12 md:py-16">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center break-words px-2">Quick Facts</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             {country.facts.map((fact, index) => (
               <motion.div
                 key={index}
@@ -792,6 +793,7 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
               </motion.div>
             ))}
           </div>
+          </div>
         </motion.div>
 
         {/* Highlights */}
@@ -802,8 +804,8 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">Why Choose {country.name}?</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center break-words px-2">Why Choose {country.name}?</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {country.highlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -813,14 +815,14 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 bg-white border-border/50">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CardContent className="p-4 md:p-6">
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center">
                         {getIcon(highlight.icon)}
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold mb-2">{highlight.title}</h4>
-                        <p className="text-muted-foreground">{highlight.description}</p>
+                        <h4 className="text-base sm:text-lg md:text-xl font-semibold mb-2 break-words">{highlight.title}</h4>
+                        <p className="text-sm md:text-base text-muted-foreground break-words">{highlight.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -836,15 +838,17 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-12 bg-gray-200 -mx-6 md:-mx-8 px-6 md:px-8 py-12 md:py-16"
+          className="mb-12"
         >
-          <Card className="bg-white border-border/50">
-            <CardContent className="p-8 md:p-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
-                <GraduationCap size={32} weight="duotone" className="text-primary" />
-                Top Reasons to Study in {country.name}
+          <div className="bg-gray-200 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-12 md:py-16">
+            <Card className="bg-white border-border/50">
+            <CardContent className="p-6 md:p-8 lg:p-10">
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 flex items-center gap-2 md:gap-3 flex-wrap">
+                <GraduationCap size={24} weight="duotone" className="text-primary md:hidden flex-shrink-0" />
+                <GraduationCap size={32} weight="duotone" className="text-primary hidden md:block flex-shrink-0" />
+                <span className="break-words">Top Reasons to Study in {country.name}</span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 {country.whyStudyHere.map((reason, index) => (
                   <motion.div
                     key={index}
@@ -857,12 +861,13 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                     </div>
-                    <p className="text-muted-foreground">{reason}</p>
+                    <p className="text-muted-foreground break-words">{reason}</p>
                   </motion.div>
                 ))}
               </div>
             </CardContent>
           </Card>
+          </div>
         </motion.div>
 
         {/* Two Column Section */}
@@ -875,9 +880,10 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Card className="h-full bg-white border-border/50">
-              <CardContent className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-bold mb-4 flex items-center gap-2">
-                  <MapPin size={28} weight="duotone" className="text-primary" />
+              <CardContent className="p-4 md:p-6 lg:p-8">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 flex items-center gap-2">
+                  <MapPin size={20} weight="duotone" className="text-primary md:hidden" />
+                  <MapPin size={28} weight="duotone" className="text-primary hidden md:block" />
                   Popular Student Cities
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -899,9 +905,10 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
             transition={{ duration: 0.6, delay: 0.45 }}
           >
             <Card className="h-full bg-white border-border/50">
-              <CardContent className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-bold mb-4 flex items-center gap-2">
-                  <GraduationCap size={28} weight="duotone" className="text-primary" />
+              <CardContent className="p-4 md:p-6 lg:p-8">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 flex items-center gap-2">
+                  <GraduationCap size={20} weight="duotone" className="text-primary md:hidden" />
+                  <GraduationCap size={28} weight="duotone" className="text-primary hidden md:block" />
                   Top Universities
                 </h3>
                 <ul className="space-y-2">
@@ -926,12 +933,13 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           className="mb-12"
         >
           <Card className="bg-white border-border/50">
-            <CardContent className="p-8 md:p-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 flex items-center gap-3">
-                <Briefcase size={32} weight="duotone" className="text-primary" />
-                Career Prospects
+            <CardContent className="p-6 md:p-8 lg:p-10">
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4 flex items-center gap-2 md:gap-3 break-words">
+                <Briefcase size={24} weight="duotone" className="text-primary md:hidden flex-shrink-0" />
+                <Briefcase size={32} weight="duotone" className="text-primary hidden md:block flex-shrink-0" />
+                <span>Career Prospects</span>
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed break-words">
                 {country.careerProspects}
               </p>
             </CardContent>
@@ -944,19 +952,20 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center bg-gray-200 -mx-6 md:-mx-8 px-6 md:px-8 py-12 md:py-16"
+          className="text-center"
         >
-          <Card className="bg-white border-border/50">
-            <CardContent className="p-8 md:p-12">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+          <div className="bg-gray-200 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-12 md:py-16">
+            <Card className="bg-white border-border/50">
+            <CardContent className="p-6 md:p-8 lg:p-12">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 break-words">
                 Ready to Start Your Journey to {country.name}?
               </h3>
-              <p className="text-lg mb-8 text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-muted-foreground max-w-2xl mx-auto break-words px-2">
                 Book a free consultation with our expert advisors to learn more about studying in {country.name} and get personalized guidance for your application.
               </p>
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg px-8 py-6 hover:scale-105 transition-transform shadow-xl"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 hover:scale-105 transition-transform shadow-xl"
                 onClick={handleApply}
               >
                 <AirplaneTilt size={24} weight="duotone" className="mr-2" />
@@ -964,6 +973,7 @@ export function CountryAbout({ onBookConsultation }: CountryAboutProps) {
               </Button>
             </CardContent>
           </Card>
+          </div>
         </motion.div>
       </div>
     </div>
