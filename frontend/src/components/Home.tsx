@@ -59,9 +59,8 @@ export function Home({ onBookConsultation }: HomeProps) {
       };
    }, []);
 
-   const handleLearnMore = (destination: string) => {
-      // Convert destination name to URL-friendly ID
-      const countryId = destination.toLowerCase().replace(/\s+/g, '');
+   const handleLearnMore = (countryId: string) => {
+      // Navigate to country about page using the country ID
       navigate(`/country/${countryId}`);
    };
 

@@ -443,7 +443,7 @@ export function Destinations({ onLearnMore }: DestinationsProps) {
                   
                   <Button 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors" 
-                    onClick={() => onLearnMore(dest.name)}
+                    onClick={() => onLearnMore(dest.id)}
                   >
                     Learn More & Apply
                   </Button>
