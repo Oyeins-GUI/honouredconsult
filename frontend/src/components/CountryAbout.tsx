@@ -239,7 +239,7 @@ const countryData: Record<string, CountryData> = {
       {
         icon: "work",
         title: "Graduate Route",
-        description: "2-year post-study work visa for all graduates (3 years for PhD holders)"
+        description: "18-month post-study work visa for all graduates (3 years for PhD holders)"
       },
       {
         icon: "culture",
@@ -250,8 +250,8 @@ const countryData: Record<string, CountryData> = {
     facts: [
       { label: "Universities", value: "160+" },
       { label: "Programs Available", value: "65,000+" },
-      { label: "Average Tuition", value: "£15k-£35k/year" },
-      { label: "Post-Study Work", value: "2-3 years" },
+      { label: "Average Tuition", value: "£12k-£25k/year" },
+      { label: "Post-Study Work", value: "18 months" },
       { label: "Top 10 Universities", value: "4 institutions" },
       { label: "Work During Studies", value: "20 hours/week" }
     ],
@@ -263,11 +263,11 @@ const countryData: Record<string, CountryData> = {
       "University College London (UCL)",
       "University of Edinburgh"
     ],
-    careerProspects: "The UK's Graduate Route visa allows international students to stay and work for 2 years after completing their degree (3 years for PhD). With a strong economy, global companies, and status as a financial and tech hub, the UK offers excellent career opportunities. Many students use UK degrees as a stepping stone for global careers.",
+    careerProspects: "The UK's Graduate Route visa allows international students to stay and work for 18 months after completing their degree (3 years for PhD). With a strong economy, global companies, and status as a financial and tech hub, the UK offers excellent career opportunities. Many students use UK degrees as a stepping stone for global careers.",
     whyStudyHere: [
       "4 universities in the world's top 10",
       "Shorter degree durations save time and money",
-      "2-year post-study work visa for all graduates",
+      "18-month post-study work visa for all graduates",
       "English-speaking country with rich cultural heritage",
       "Gateway to Europe for travel and opportunities",
       "Strong research focus and innovation ecosystem",

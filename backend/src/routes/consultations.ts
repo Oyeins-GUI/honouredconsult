@@ -45,20 +45,22 @@ router.post("/", async (req, res): Promise<void> => {
 
       await consultation.save();
 
-      // Send confirmation email to user (in background)
-      sendConsultationConfirmation(email, firstName, lastName).catch((err) => {
-         console.error("Failed to send confirmation email:", err);
-      });
-
-      // Send notification email to admin (in background)
-      sendAdminNotification(email, firstName, lastName).catch((err) => {
-         console.error("Failed to send admin notification email:", err);
-      });
-
+      // Immediately respond to the client
       res.status(201).json({
          success: true,
          message: "Consultation request submitted successfully",
          data: consultation,
+      });
+
+      // Send emails asynchronously in the background (fire-and-forget)
+      setImmediate(() => {
+         sendConsultationConfirmation(email, firstName, lastName).catch((err) => {
+            console.error("Failed to send confirmation email:", err);
+         });
+
+         sendAdminNotification(email, firstName, lastName).catch((err) => {
+            console.error("Failed to send admin notification email:", err);
+         });
       });
    } catch (error: any) {
       console.error("Create consultation error:", error);

@@ -76,6 +76,7 @@ export function AdminDashboard() {
    } | null>(null);
    const [adminOpen, setAdminOpen] = useState(false);
    const [loginOpen, setLoginOpen] = useState(false);
+   const [creatingNewsletter, setCreatingNewsletter] = useState(false);
 
    useEffect(() => {
       const checkOwner = async () => {
@@ -152,6 +153,19 @@ export function AdminDashboard() {
       method: "email" | "phone" | "whatsapp",
    ) => {
       try {
+         // Open email client, phone dialer, or WhatsApp first
+         if (method === "email") {
+            const subject = encodeURIComponent("Re: Your Consultation Request");
+            const body = encodeURIComponent(`Dear ${consultation.firstName},\n\nThank you for your consultation request. I would like to discuss your study abroad plans.\n\nBest regards,\nHonoured Educational Consult`);
+            window.open(`mailto:${consultation.email}?subject=${subject}&body=${body}`, "_self");
+         } else if (method === "phone") {
+            window.open(`tel:${consultation.phone}`, "_self");
+         } else if (method === "whatsapp") {
+            const phone = consultation.phone.replace(/\D/g, "");
+            window.open(`https://wa.me/${phone}`, "_blank");
+         }
+
+         // Update status in background
          await api.patch(
             `/consultations/${consultation._id || consultation.id}`,
             {
@@ -159,16 +173,6 @@ export function AdminDashboard() {
                contactMethod: method,
             },
          );
-
-         // Open email client or phone dialer
-         if (method === "email") {
-            window.location.href = `mailto:${consultation.email}?subject=Re: Your Consultation Request&body=Dear ${consultation.firstName},`;
-         } else if (method === "phone") {
-            window.location.href = `tel:${consultation.phone}`;
-         } else if (method === "whatsapp") {
-            const phone = consultation.phone.replace(/\D/g, "");
-            window.open(`https://wa.me/${phone}`, "_blank");
-         }
 
          await loadData();
          showAlert("success", `Contact marked as contacted via ${method}`);
@@ -194,6 +198,8 @@ export function AdminDashboard() {
             return;
          }
 
+         setCreatingNewsletter(true);
+
          if (editingNewsletter) {
             await api.patch(
                `/newsletters/${editingNewsletter._id}`,
@@ -214,9 +220,12 @@ export function AdminDashboard() {
          });
          setEditingNewsletter(null);
          await loadData();
-      } catch (error) {
+      } catch (error: any) {
          console.error("Failed to save newsletter:", error);
-         showAlert("error", "Failed to save newsletter");
+         const errorMessage = error.response?.data?.message || "Failed to save newsletter";
+         showAlert("error", errorMessage);
+      } finally {
+         setCreatingNewsletter(false);
       }
    };
 
@@ -1160,13 +1169,19 @@ export function AdminDashboard() {
                </div>
                <DialogFooter>
                   <Button
+                     type="button"
                      variant="outline"
                      onClick={() => setShowNewsletterDialog(false)}
+                     disabled={creatingNewsletter}
                   >
                      Cancel
                   </Button>
-                  <Button onClick={handleCreateNewsletter}>
-                     {editingNewsletter ? "Update" : "Create"} Newsletter
+                  <Button 
+                     type="button"
+                     onClick={handleCreateNewsletter}
+                     disabled={creatingNewsletter}
+                  >
+                     {creatingNewsletter ? "Saving..." : editingNewsletter ? "Update" : "Create"} Newsletter
                   </Button>
                </DialogFooter>
             </DialogContent>

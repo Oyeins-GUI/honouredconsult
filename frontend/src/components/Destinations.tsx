@@ -145,7 +145,7 @@ const destinations: Destination[] = [
     trending: false,
     description: "Historic institutions with shorter degree durations, global recognition, and 2-year post-study work visa",
     studyDuration: "3 years (UG), 1 year (PG)",
-    workRights: "2 years PSW visa",
+    workRights: "18 months PSW visa",
     category: "popular"
   },
   {

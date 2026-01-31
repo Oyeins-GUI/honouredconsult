@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { useState, useEffect } from "react"
 import { List, X, Phone, User } from "@phosphor-icons/react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 
 interface NavbarProps {
   onBookConsultation: () => void
@@ -13,6 +13,8 @@ export function Navbar({ onBookConsultation }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +32,24 @@ export function Navbar({ onBookConsultation }: NavbarProps) {
   }, [])
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      setMobileMenuOpen(false)
+    setMobileMenuOpen(false)
+    
+    // If not on home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/')
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    } else {
+      // Already on home page, just scroll
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
     }
   }
 

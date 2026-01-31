@@ -16,7 +16,6 @@ const steps = [
       title: "Free Consultation",
       description:
          "Meet with our expert counselors to discuss your goals, preferences, and eligibility",
-      duration: "30-60 mins",
    },
    {
       icon: MagnifyingGlass,
@@ -24,7 +23,6 @@ const steps = [
       title: "Course & University Selection",
       description:
          "We help you shortlist the best programs and universities matching your profile",
-      duration: "1-2 weeks",
    },
    {
       icon: FileText,
@@ -32,7 +30,6 @@ const steps = [
       title: "Application Preparation",
       description:
          "Expert assistance with applications, essays, LORs, and complete documentation",
-      duration: "2-4 weeks",
    },
    {
       icon: CheckCircle,
@@ -40,7 +37,6 @@ const steps = [
       title: "Offer Letter & Acceptance",
       description:
          "Track applications and receive offers from universities. We help you choose the best fit",
-      duration: "4-12 weeks",
    },
    {
       icon: Stamp,
@@ -48,7 +44,6 @@ const steps = [
       title: "Visa Application",
       description:
          "Complete visa guidance, interview preparation, and documentation support",
-      duration: "2-8 weeks",
    },
    {
       icon: AirplaneTakeoff,
@@ -56,7 +51,6 @@ const steps = [
       title: "Pre-Departure Support",
       description:
          "Accommodation, travel, and orientation support to ensure a smooth transition",
-      duration: "2-4 weeks",
    },
 ];
 
@@ -119,26 +113,9 @@ export function ApplicationProcess() {
                                     {step.title}
                                  </h3>
 
-                                 <p className="text-muted-foreground leading-relaxed mb-4">
+                                 <p className="text-muted-foreground leading-relaxed">
                                     {step.description}
                                  </p>
-
-                                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-foreground text-sm font-medium">
-                                    <svg
-                                       className="w-4 h-4"
-                                       fill="none"
-                                       viewBox="0 0 24 24"
-                                       stroke="currentColor"
-                                    >
-                                       <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                       />
-                                    </svg>
-                                    {step.duration}
-                                 </div>
                               </CardContent>
                            </Card>
                         </motion.div>

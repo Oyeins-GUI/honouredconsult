@@ -21,6 +21,19 @@ export function Home({ onBookConsultation }: HomeProps) {
    const [isOwner, setIsOwner] = useState(false);
    const [loginOpen, setLoginOpen] = useState(false);
 
+   // Handle hash navigation when component loads
+   useEffect(() => {
+      const hash = window.location.hash;
+      if (hash) {
+         setTimeout(() => {
+            const element = document.getElementById(hash.substring(1));
+            if (element) {
+               element.scrollIntoView({ behavior: "smooth" });
+            }
+         }, 100);
+      }
+   }, []);
+
    useEffect(() => {
       const checkOwner = async () => {
          try {
