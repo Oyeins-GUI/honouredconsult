@@ -154,7 +154,7 @@ export function Navbar({ onBookConsultation }: NavbarProps) {
                         </div>
                         <div className="flex flex-col">
                           <span className="font-semibold">WhatsApp us</span>
-                          <span className="text-sm text-muted-foreground">08095029844</span>
+                          <span className="text-sm text-muted-foreground">0706 838 5111</span>
                         </div>
                       </a>
                     </DropdownMenuItem>
